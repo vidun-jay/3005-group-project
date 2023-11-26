@@ -46,3 +46,17 @@ body, html {
 .header h1 {
     margin-bottom: 20px;
 }
+
+.exercise-tracker {
+    text-align: center;
+    margin: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#weightProgressChart {
+    min-height: 400px;
+    margin: auto;
+}

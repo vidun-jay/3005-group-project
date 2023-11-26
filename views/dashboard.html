@@ -6,6 +6,7 @@
     <title>Your Personalized Dashboard - Health and Fitness Club</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="sidebar">
@@ -22,9 +23,39 @@
         <div class="header">
             <h1>Welcome to Your Personalized Dashboard</h1>
         </div>
-        <!-- Other dashboard content goes here -->
-    </div>
+        <div class="exercise-tracker">
+            <h2>Goal Progress</h2>
+            <canvas id="weightProgressChart"></canvas>
+        </div>
 
-    <!-- JavaScript, if any -->
+    </div>
+    <!-- JavaScript for Chart -->
+    <script>
+        const ctx = document.getElementById('weightProgressChart').getContext('2d');
+        const weightProgressChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'], // Replace with actual dates
+                datasets: [{
+                    label: 'Progress',
+                    data: [10, 20, 30, 20, 50, 60], // Replace with actual weight data
+                    backgroundColor: 'rgba(212, 247, 214, 1)',
+                    borderColor: 'rgba(76, 176, 81, 1)',
+                    borderWidth: 2,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: true
+            }
+        });
+    </script>
+
 </body>
 </html>
