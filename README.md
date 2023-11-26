@@ -12,18 +12,18 @@ CREATE TABLE users (
 ```
 
 ## Running the Server
-To run the web server, ensure that `node.js` is installed (see [How to Install Node.js](https://nodejs.org/en/learn/getting-started/how-to-install-nodejs)). Then, run
+To run the web server, ensure that `node.js` is installed (see [How to Install Node.js](https://nodejs.org/en/learn/getting-started/how-to-install-nodejs)). Then, download all of the required packages by running:
 
 ```shell
 npm init
 ```
 
-to download all of the required packages, and 
+and run the web server using:
 
 ```shell
 node index.js
 ```
 
-to run the server. It should then be available on http://localhost:3000/.
+It should then be available on http://localhost:3000/.
 
 **⚠️ Note:** Ensure that the `.env` file is in the working directory. The application cannot connect to the PostgreSQL server otherwise.
