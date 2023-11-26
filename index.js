@@ -77,7 +77,7 @@ app.post('/login', async (req, res) => {
                 res.send('Invalid password');
             }
         } else {
-            res.send('User does not exist');
+            res.send('Account does not exist');
         }
     });
 });
