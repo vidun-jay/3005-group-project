@@ -1,3 +1,6 @@
+![](https://badgen.net/static/node/v21.1.0/green)
+![](https://badgen.net/badge/icon/postgresql?icon=postgresql&label)
+
 # COMP 3005A - Project: Health and Fitness Club Management System
 
 ## Initial Setup Instructions (Database Creation)
