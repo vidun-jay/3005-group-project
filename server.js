@@ -41,8 +41,8 @@ app.get('/dashboard', (req, res) => {
 
 // POST route handler for register page
 app.post('/register', async (req, res) => {
-    // get email and password pair from the web page
-    const { email, password } = req.body;
+    // get details from the web page
+    const { email, password, first_name, last_name } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // query to check if the email already exists
@@ -54,8 +54,9 @@ app.post('/register', async (req, res) => {
             // if the email already exists, say so
             res.send('Email already exists');
         } else {
-            // otherwise insert user and hashed password into database
-            pool.query('INSERT INTO users (email, password) VALUES ($1, $2)', [email, hashedPassword], (error, results) => {
+            // otherwise, insert user into the database
+            pool.query('INSERT INTO users (email, password, first_name, last_name) VALUES ($1, $2, $3, $4)',
+                       [email, hashedPassword, first_name, last_name], (error, results) => {
                 if (error) {
                     throw error;
                 }
