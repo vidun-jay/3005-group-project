@@ -23,7 +23,7 @@ form {
 /* Input fields styling */
 input[type="email"],
 input[type="password"],
-input[type="text"] { /* Added input[type="text"] for first and last name */
+input[type="text"] {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -68,6 +68,6 @@ a:hover {
 }
 
 .logo-container img {
-    max-width: 100px; /* Adjust size as needed */
+    max-width: 100px;
     height: auto;
 }
