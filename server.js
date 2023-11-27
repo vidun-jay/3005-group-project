@@ -34,11 +34,6 @@ app.get('/register', (req, res) => {
     res.sendFile(__dirname + '/views/register.html');
 });
 
-// GET route handler for dashboard page
-app.get('/dashboard', (req, res) => {
-    res.sendFile(__dirname + '/views/dashboard.html');
-});
-
 // POST route handler for register page
 app.post('/register', async (req, res) => {
     // get details from the web page
@@ -78,7 +73,7 @@ app.post('/login', async (req, res) => {
             const isValid = await bcrypt.compare(password, results.rows[0].password);
             if (isValid) {
                 // TODO: rest of the website
-                res.redirect('/dashboard');
+                res.send('more soon...');
             } else {
                 res.send('Invalid password');
             }
