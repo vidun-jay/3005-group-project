@@ -20,8 +20,10 @@ form {
     width: 300px;
 }
 
+/* Input fields styling */
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="text"] {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -59,7 +61,6 @@ a:hover {
     text-decoration: underline;
 }
 
-
 /* Logo Styling */
 .logo-container {
     text-align: center;
@@ -67,6 +68,6 @@ a:hover {
 }
 
 .logo-container img {
-    max-width: 100px; /* Adjust size as needed */
+    max-width: 100px;
     height: auto;
 }
