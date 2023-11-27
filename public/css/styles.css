@@ -20,8 +20,10 @@ form {
     width: 300px;
 }
 
+/* Input fields styling */
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="text"] { /* Added input[type="text"] for first and last name */
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -58,7 +60,6 @@ a {
 a:hover {
     text-decoration: underline;
 }
-
 
 /* Logo Styling */
 .logo-container {
