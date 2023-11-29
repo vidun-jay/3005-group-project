@@ -13,8 +13,48 @@
         <input type="text" name="last_name" placeholder="Last Name" required>
         <input type="email" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Password" required>
+
+        <input type="number" step="0.01" name="weight" placeholder="Weight (lbs)" required>
+
+        <div class="select-container">
+            <select id="heightSelect" name="height" required>
+                <option value="" disabled selected>Select your height</option>
+                <!-- options are added here using addHeightOptions() function -->
+            </select>
+        </div>
+
+        <div class="select-container">
+            <select name="goal" required>
+                <option value="" disabled selected>Select your fitness goal</option>
+                <option value="lose_weight">Lose Weight</option>
+                <option value="gain_muscle">Gain Muscle</option>
+                <option value="cardio">Cardio</option>
+                <option value="athleticism">Athleticism</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+
         <button type="submit">Sign Up</button>
         <p>Already have an account? <a href="/login">Login here!</a></p>
     </form>
+
+    <script>
+        // wait for the DOM to be fully loaded before running the script
+        document.addEventListener('DOMContentLoaded', function() {
+            const select = document.getElementById('heightSelect');
+            for (let feet = 4; feet <= 7; feet++) {
+                for (let inches = 0; inches < 12; inches++) {
+                    // convert height to centimeters
+                    const height_in_cm = Math.round((feet * 12 + inches) * 2.54);
+                    const option = document.createElement('option');
+                    option.value = height_in_cm; // store height in cm as an integer
+                    option.textContent = `${feet}'${inches}" (${height_in_cm} cm)`;
+                    select.appendChild(option);
+                }
+            }
+        });
+    </script>
+
+
 </body>
 </html>

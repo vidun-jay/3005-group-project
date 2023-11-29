@@ -31,7 +31,14 @@ input[type="text"] {
     border-radius: 4px;
     box-sizing: border-box;
 }
-
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
 /* Button Styling */
 button {
     background-color: #4CAF50;
@@ -70,4 +77,40 @@ a:hover {
 .logo-container img {
     max-width: 100px;
     height: auto;
+}
+
+/* Select Container Styling */
+.select-container {
+    position: relative;
+    margin: 10px 0;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    box-sizing: border-box;
+    -webkit-appearance: none; /* Removes default styling on Webkit browsers */
+    -moz-appearance: none;    /* Removes default styling on Firefox browsers */
+    appearance: none;
+    position: relative;
+}
+
+/* Arrow Indicator for Select */
+.select-container:after {
+    content: '▼';
+    font-size: 12px;
+    position: absolute;
+    right: 15px;
+    top: calc(50% - 0.5em);
+    pointer-events: none;
+}
+
+/* Focus and Hover Styles for Select */
+select:focus {
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
 }
