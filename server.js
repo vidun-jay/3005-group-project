@@ -6,6 +6,9 @@ const { Pool } = require('pg');
 
 const app = express();
 
+// Set EJS as the view engine
+app.set('view engine', 'ejs');
+
 // create a connection pool for connecting to the database
 const pool = new Pool({
     user: process.env.DB_USER,
@@ -26,7 +29,7 @@ app.get('/', (req, res) => {
 
 // GET route handler for login page
 app.get('/login', (req, res) => {
-    res.sendFile(__dirname + '/views/login.html');
+    res.render('login', { message: '' });
 });
 
 // GET route handler for registration page
@@ -105,6 +108,7 @@ app.post('/register', async (req, res) => {
 
 // POST route handeler for login page
 app.post('/login', async (req, res) => {
+    
     const { email, password } = req.body;
     pool.query('SELECT * FROM users WHERE email = $1', [email], async (error, results) => {
         if (error) {
@@ -113,13 +117,13 @@ app.post('/login', async (req, res) => {
         if (results.rows.length > 0) {
             const isValid = await bcrypt.compare(password, results.rows[0].password);
             if (isValid) {
-                // TODO: rest of the website
                 res.redirect('/dashboard');
             } else {
-                res.send('Invalid password');
+                res.render('login', { message: 'Invalid password, try again' });
             }
         } else {
-            res.send('User does not exist');
+            // res.send('User does not exist');
+            res.render('login', { message: 'User does not exist, try again' });
         }
     });
 });
