@@ -11,11 +11,11 @@ CREATE TABLE users (
 CREATE TABLE goals (
     user_id INT,
     goal_id INT
-)
+);
 
 -- Create user information table (stores height and weight)
 CREATE TABLE user_info (
     user_id INT,
     height INT,
     weight FLOAT
-)
+);
