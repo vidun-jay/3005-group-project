@@ -3,7 +3,23 @@
 
 # COMP 3005A - Project: Health and Fitness Club Management System
 
-## Running the Server
+## 💾 Creating the Database
+Run a PostgreSQL server and create a new database in pgAdmin. In the root directory, create a `.env` file (omitted for security purposes) that includes the following information, substituting the placeholder values for the correct ones:
+
+```
+DB_USER=<username>
+DB_PASSWORD=<password>
+DB_HOST=localhost
+DB_PORT=5432
+DB_DATABASE=<database name>
+```
+**⚠️ Note:** The default credentials for postgres are:
+- Username: `postgres`
+- Password: `postgres`
+
+The `DB_DATABASE` variable must be set to the name of the newly created databse. Ensure these values are correct as they are loaded into the rest of the application and **necessary** for it to run correctly.
+
+## 🛠️ Running the Server
 To run the web server, ensure that `node.js` is installed (see [How to Install Node.js](https://nodejs.org/en/learn/getting-started/how-to-install-nodejs)). Then, download all of the required packages by running:
 
 ```shell
@@ -17,5 +33,3 @@ node server.js
 ```
 
 It should then be available on http://localhost:3000/.
-
-**⚠️ Note:** Ensure that the `.env` file is in the working directory. The application cannot connect to the PostgreSQL server otherwise.
