@@ -34,7 +34,7 @@ app.get('/login', (req, res) => {
 
 // GET route handler for registration page
 app.get('/register', (req, res) => {
-    res.sendFile(__dirname + '/views/register.html');
+    res.render('register', { message: '' });
 });
 
 // GET route handler for dashboard page
@@ -101,14 +101,14 @@ app.post('/register', async (req, res) => {
     } catch (error) {
         // if an error occurs, rollback
         await pool.query('ROLLBACK');
-        throw error;
+        res.render('register', { message: 'There already exists a user with that email.' });
     }
 });
 
 
 // POST route handeler for login page
 app.post('/login', async (req, res) => {
-    
+
     const { email, password } = req.body;
     pool.query('SELECT * FROM users WHERE email = $1', [email], async (error, results) => {
         if (error) {
@@ -122,7 +122,6 @@ app.post('/login', async (req, res) => {
                 res.render('login', { message: 'Invalid password, try again.' });
             }
         } else {
-            // res.send('User does not exist');
             res.render('login', { message: 'User does not exist, try again.' });
         }
     });
