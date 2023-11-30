@@ -86,3 +86,57 @@ body, html {
         margin: 10px 0;
     }
 }
+
+/* Classes Container Styling */
+.classes-container {
+    width: 50%;
+    margin-top: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.classes-list {
+    margin-top: 10px;
+}
+
+.class-item {
+    background: #f4f4f4;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.class-item h3 {
+    margin: 0 0 10px 0;
+}
+
+.class-item p {
+    margin: 0 0 10px 0;
+}
+
+.register-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.register-btn:hover {
+    background-color: #45a049;
+}
+
+/* Responsive Design for Classes List */
+@media (max-width: 768px) {
+    .class-item {
+        padding: 10px;
+    }
+}

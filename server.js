@@ -39,6 +39,16 @@ app.get('/dashboard', (req, res) => {
     res.sendFile(__dirname + '/views/dashboard.html');
 });
 
+app.get('/classes', async (req, res) => {
+    try {
+        const classData = await pool.query('SELECT * FROM classes');
+        res.json(classData.rows); // send the data back as JSON
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server error');
+    }
+});
+
 // POST route handler for register page
 app.post('/register', async (req, res) => {
     const { email, password, first_name, last_name, height, weight, goal } = req.body;
