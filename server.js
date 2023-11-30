@@ -119,11 +119,11 @@ app.post('/login', async (req, res) => {
             if (isValid) {
                 res.redirect('/dashboard');
             } else {
-                res.render('login', { message: 'Invalid password, try again' });
+                res.render('login', { message: 'Invalid password, try again.' });
             }
         } else {
             // res.send('User does not exist');
-            res.render('login', { message: 'User does not exist, try again' });
+            res.render('login', { message: 'User does not exist, try again.' });
         }
     });
 });
