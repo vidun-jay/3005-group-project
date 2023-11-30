@@ -42,6 +42,14 @@
                     <li>Sunday - Swimming</li>
                 </ul>
             </div>
+
+            <div class="classes-container">
+                <h2>Available Group Fitness Classes</h2>
+                <div class="classes-list">
+                    <!-- added by script below -->
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -69,6 +77,35 @@
                 },
                 responsive: true,
                 maintainAspectRatio: true
+            }
+        });
+    </script>
+
+    <script>
+        // wait for the DOM to be fully loaded before running the script
+        document.addEventListener('DOMContentLoaded', async () => {
+            const classesContainer = document.querySelector('.classes-list');
+            try {
+                const response = await fetch('/classes');
+                const classes = await response.json();
+
+                // clear any existing content
+                classesContainer.innerHTML = '';
+
+                // add each class to the classes list
+                classes.forEach(cls => {
+                    const classDiv = document.createElement('div');
+                    classDiv.className = 'class-item';
+                    classDiv.innerHTML = `
+                        <h3>${cls.class_name}</h3>
+                        <p>Instructor: ${cls.instructor_name}</p>
+                        <p>Date: ${new Date(cls.schedule).toLocaleString()}</p>
+                        <button class="register-btn">Register</button>
+                    `;
+                    classesContainer.appendChild(classDiv);
+                });
+            } catch (error) {
+                console.error('Could not load classes:', error);
             }
         });
     </script>
