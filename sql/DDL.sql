@@ -33,6 +33,6 @@ CREATE TABLE class_registrations (
     registration_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     class_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (class_id) REFERENCES classes(class_id)
 );
