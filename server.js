@@ -39,6 +39,7 @@ app.get('/dashboard', (req, res) => {
     res.sendFile(__dirname + '/views/dashboard.html');
 });
 
+// GET handler to query classes database
 app.get('/classes', async (req, res) => {
     try {
         const classData = await pool.query('SELECT * FROM classes');
