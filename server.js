@@ -36,56 +36,31 @@ app.get('/register', (req, res) => {
 
 // POST route handler for register page
 app.post('/register', async (req, res) => {
-    const { email, password, first_name, last_name, height, weight, goal } = req.body;
-    const hashed_pass = await bcrypt.hash(password, 10);
+    // get details from the web page
+    const { email, password, first_name, last_name } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    try {
-        await pool.query('BEGIN');
-
-        // try to insert user into the `users` table
-        const add_user_result = await pool.query(
-            'INSERT INTO users (email, password, first_name, last_name) VALUES ($1, $2, $3, $4) RETURNING id',
-            [email, hashed_pass, first_name, last_name]
-        );
-
-        // get the user ID from the INSERT result
-        const user_id = add_user_result.rows[0].id;
-
-        // insert user details into the 'user_info' table
-        await pool.query(
-            'INSERT INTO user_info (user_id, height, weight) VALUES ($1, $2, $3)',
-            [user_id, height, weight]
-        );
-
-        // map the goal description to goal_id
-        const goal_map = {
-            'lose_weight': 1,
-            'gain_muscle': 2,
-            'cardio': 3,
-            'athleticism': 4,
-            'other': 5
-        };
-
-        const goal_id = goal_map[goal];
-
-        // insert user goal into the 'goals' table
-        await pool.query(
-            'INSERT INTO goals (user_id, goal_id) VALUES ($1, $2)',
-            [user_id, goal_id]
-        );
-
-        // commit transaction
-        await pool.query('COMMIT');
-
-        // redirect user to login page
-        res.redirect('/login');
-    } catch (error) {
-        // if an error occurs, rollback
-        await pool.query('ROLLBACK');
-        throw error;
-    }
+    // query to check if the email already exists
+    pool.query('SELECT * FROM users WHERE email = $1', [email], (error, results) => {
+        if (error) {
+            throw error;
+        }
+        if (results.rows.length > 0) {
+            // if the email already exists, say so
+            res.send('Email already exists');
+        } else {
+            // otherwise, insert user into the database
+            pool.query('INSERT INTO users (email, password, first_name, last_name) VALUES ($1, $2, $3, $4)',
+                       [email, hashedPassword, first_name, last_name], (error, results) => {
+                if (error) {
+                    throw error;
+                }
+                // once done, redirect user to login page
+                res.redirect('/login');
+            });
+        }
+    });
 });
-
 
 // POST route handeler for login page
 app.post('/login', async (req, res) => {
@@ -110,5 +85,5 @@ app.post('/login', async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server running on port http://localhost:${PORT}/login`);
+    console.log(`Server running on port ${PORT}`);
 });
