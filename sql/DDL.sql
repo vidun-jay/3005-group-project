@@ -19,3 +19,20 @@ CREATE TABLE user_info (
     height INT,
     weight FLOAT
 );
+
+-- Create classes table
+CREATE TABLE classes (
+    class_id SERIAL PRIMARY KEY,
+    class_name VARCHAR(255) NOT NULL,
+    instructor_name VARCHAR(255) NOT NULL,
+    schedule DATE NOT NULL
+);
+
+-- Records which users have registered for which classes.
+CREATE TABLE class_registrations (
+    registration_id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    class_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (class_id) REFERENCES classes(class_id)
+);
