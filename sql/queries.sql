@@ -10,7 +10,9 @@ CREATE TABLE users (
 -- Create goals table
 CREATE TABLE goals (
     user_id INT,
-    goal_id INT
+    goal_id INT,
+    FOREIGN KEY (user_id)
+        REFERENCES users (id)
 );
 
 -- Create user information table (stores height and weight)
@@ -18,4 +20,6 @@ CREATE TABLE user_info (
     user_id INT,
     height INT,
     weight FLOAT
+    FOREIGN KEY (user_id)
+        REFERENCES users (id)
 );
