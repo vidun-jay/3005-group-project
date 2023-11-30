@@ -13,7 +13,7 @@ npm install
 and run the web server using:
 
 ```shell
-node index.js
+node server.js
 ```
 
 It should then be available on http://localhost:3000/.
