@@ -6,7 +6,7 @@ const { Pool } = require('pg');
 
 const app = express();
 
-// Set EJS as the view engine
+// set EJS as the view engine
 app.set('view engine', 'ejs');
 
 // create a connection pool for connecting to the database
@@ -39,7 +39,7 @@ app.get('/register', (req, res) => {
 
 // GET route handler for dashboard page
 app.get('/dashboard', (req, res) => {
-    res.sendFile(__dirname + '/views/dashboard.html');
+    res.render('dashboard', { user: {}, goal: '' });
 });
 
 // GET handler to query classes database
@@ -105,26 +105,47 @@ app.post('/register', async (req, res) => {
     }
 });
 
+function convertGoalIdToName(goalId) {
 
-// POST route handeler for login page
+    const goal_map = {
+        1: 'Lose Weight',
+        2: 'Gain Muscle',
+        3: 'Cardio',
+        4: 'Athleticism',
+        5: 'Other'
+    };
+    return goal_map[goalId] || 'Unknown Goal';
+}
+
+// POST route handler for login page
 app.post('/login', async (req, res) => {
-
     const { email, password } = req.body;
-    pool.query('SELECT * FROM users WHERE email = $1', [email], async (error, results) => {
-        if (error) {
-            throw error;
-        }
-        if (results.rows.length > 0) {
-            const isValid = await bcrypt.compare(password, results.rows[0].password);
+    try {
+        const userResult = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+        if (userResult.rows.length > 0) {
+            const user = userResult.rows[0];
+            const isValid = await bcrypt.compare(password, user.password);
             if (isValid) {
-                res.redirect('/dashboard');
+                let goal_name = '';
+
+                // fetch goal_id from the database and convert it to a goal name
+                const goal_result = await pool.query('SELECT goal_id FROM goals WHERE user_id = $1', [user.id]);
+                if (goal_result.rows.length > 0) {
+                    const goal_id = goal_result.rows[0].goal_id;
+                    goal_name = convertGoalIdToName(goal_id); // Make sure this function exists and returns a string
+                }
+                // pass both user and goalName to the dashboard
+                res.render('dashboard', { user: user, goal: goal_name });
             } else {
-                res.render('login', { message: 'Invalid password, try again.' });
+                res.send('Invalid password');
             }
         } else {
-            res.render('login', { message: 'User does not exist, try again.' });
+            res.send('User does not exist');
         }
-    });
+    } catch (error) {
+        console.error(error);
+        res.send('An error occurred');
+    }
 });
 
 const PORT = process.env.PORT || 3000;
