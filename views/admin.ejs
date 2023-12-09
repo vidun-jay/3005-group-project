@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Personalized Dashboard - Health and Fitness Club</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <a href="#">Rooms Booked</a>
+        <a href="#">Equipment Status</a>
+        <a href="#">Monthly Memberships</a>
+        <a href="#">Private Classes</a>
+    </div>
+
+    <div class="dashboard-content">
+        <h1>Welcome to the Admin Console</h1>
+
+        <!-- Rooms Booked Table -->
+        <div class="table-container">
+            <h2>Rooms Booked</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time Slot</th>
+                        <th>Class/Event Name</th>
+                        <th>Registered People</th>
+                        <th>Instructor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>09:00 - 10:00</td>
+                        <td>Yoga</td>
+                        <td>12</td>
+                        <td>Jane Doe</td>
+                    </tr>
+                    <tr>
+                        <td>10:30 - 11:30</td>
+                        <td>Pilates</td>
+                        <td>10</td>
+                        <td>John Smith</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Equipment Status Table -->
+        <div class="table-container">
+            <h2>Equipment Status</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Equipment Name</th>
+                        <th>Last Inspection Date</th>
+                        <th>Usage Frequency</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Treadmill #1</td>
+                        <td>2023-01-15</td>
+                        <td>High</td>
+                        <td>Good condition</td>
+                    </tr>
+                    <tr>
+                        <td>Rowing Machine</td>
+                        <td>2023-02-20</td>
+                        <td>Medium</td>
+                        <td>Needs minor repair</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Monthly Memberships Table -->
+        <div class="table-container">
+            <h2>Monthly Memberships</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Member ID</th>
+                        <th>Member Name</th>
+                        <th>Payment Method</th>
+                        <th>Renewal Date</th>
+                        <th>Paid for the Month</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>Alice Johnson</td>
+                        <td>Credit Card</td>
+                        <td>2023-04-05</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Bob Smith</td>
+                        <td>PayPal</td>
+                        <td>2023-04-12</td>
+                        <td>No</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Private Classes Table -->
+        <div class="table-container">
+            <h2>Private Classes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Class ID</th>
+                        <th>Class Name</th>
+                        <th>Member ID</th>
+                        <th>Member Name</th>
+                        <th>Price</th>
+                        <th>Paid</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>101</td>
+                        <td>Personal Yoga</td>
+                        <td>003</td>
+                        <td>Carol White</td>
+                        <td>$100</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>102</td>
+                        <td>Private Pilates</td>
+                        <td>004</td>
+                        <td>David Johnson</td>
+                        <td>$120</td>
+                        <td>No</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

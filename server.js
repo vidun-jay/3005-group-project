@@ -42,6 +42,16 @@ app.get('/dashboard', (req, res) => {
     res.render('dashboard', { user: {}, goal: '' });
 });
 
+// GET route handler for dashboard page
+app.get('/admin', (req, res) => {
+    res.render('admin', { user: {}, goal: '' });
+});
+
+// GET route handler for dashboard page
+app.get('/admin-login', (req, res) => {
+    res.render('admin-login', { message: '' });
+});
+
 // GET handler to query classes database
 app.get('/classes', async (req, res) => {
     try {
@@ -147,6 +157,18 @@ app.post('/login', async (req, res) => {
         res.send('An error occurred');
     }
 });
+
+// POST route handler for validating admin access key
+app.post('/admin-login', (req, res) => {
+    const { accessKey } = req.body;
+
+    if (accessKey === "12345") {
+        res.render('admin', { user: {}, goal: '' });
+    } else {
+        res.render('admin-login', { message: 'Invalid access key.' });
+    }
+});
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
