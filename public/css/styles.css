@@ -1,6 +1,6 @@
 /* General Body Styling */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: #f4f7f6;
     margin: 0;
     padding: 0;
@@ -17,7 +17,7 @@ form {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 400px;
 }
 
 /* Input fields styling */
