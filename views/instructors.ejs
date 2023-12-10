@@ -10,24 +10,21 @@
 </head>
 <body>
 
-    
+
     <div class="sidebar">
-        <!-- <h2>Menu</h2>
-        <a href="#">Date Selection</a>
-        <a href="#">Future Classes</a>     -->
     </div>
 
     <div class="dashboard-content">
-        <h1 id="login">Welcome back, <%= user.first_name %> <%= user.last_name %></h1>
-        
-        <div > 
+        <h1 id="login">Welcome to your Instructor Dashboard</h1>
+
+        <div >
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Date Selection</title>
             </head>
             <body>
-            
+
                 <label for="selectedDate">Select a Date:</label>
                 <input type="date" id="selectedDate" name="selectedDate" >
                 <h2>Fitness Classes:</h2>
@@ -35,10 +32,10 @@
         </div>
 
 
-        <div class="content">           
+        <div class="content">
             <div class="classes-container">
-                
-                
+
+
             </div>
 
         </div>
@@ -46,7 +43,7 @@
 
 
     <script>
-        // grabs the logged in user 
+        // grabs the logged in user
         // wait for the DOM to be fully loaded before running the script
         document.addEventListener('DOMContentLoaded', async () => {
             parselogin = document.getElementById("login").innerText.split(' ');
@@ -73,9 +70,8 @@
 
                     // add each class to the classes list
                     classes.forEach(cls => {
-                        
-                        // if(user == cls.instructor_name){
-                        if(true){
+
+                        if(true) {
                             const classDiv = document.createElement('div');
                             classDiv.className = 'class-item';
                             classDiv.innerHTML = `
@@ -87,7 +83,7 @@
                             `;
                             classesContainer.appendChild(classDiv);
                         }
-                        
+
                     });
                 } catch (error) {
                     console.error('Could not load classes:', error);
@@ -99,7 +95,7 @@
     <!-- Grabs the classes from the database everytime you select a date-->
     <script>
 
-        async function updateTable(selectedDate){
+        async function updateTable(selectedDate) {
 
             // wait for the DOM to be fully loaded before running the script
             const classesContainer = document.querySelector('.classes-container');
@@ -112,11 +108,11 @@
 
                 // add each class to the classes list
                 classes.forEach(cls => {
-                    
 
-                    if(user == cls.instructor_name){
+
+                    if (true) {
                         classDate = new Date(cls.schedule).toLocaleString();
-                        
+
                         if( (classDate.split(',')[0] == selectedDate || selectedDate == "") ){
                             const classDiv = document.createElement('div');
                             classDiv.className = 'class-item';
@@ -130,7 +126,7 @@
                             classesContainer.appendChild(classDiv);
                         }
                     }
-                    
+
                 });
             } catch (error) {
                 console.error('Could not load classes:', error);

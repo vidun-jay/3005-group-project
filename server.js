@@ -42,14 +42,19 @@ app.get('/dashboard', (req, res) => {
     res.render('dashboard', { user: {}, goal: '' });
 });
 
+// GET route handler for dashboard page
+app.get('/admin', (req, res) => {
+    res.render('admin', { user: {}, goal: '' });
+});
+
+// GET route handler for dashboard page
+app.get('/admin-login', (req, res) => {
+    res.render('admin-login', { message: '' });
+});
+
 app.get('/instructors', (req, res) => {
     res.render('instructors', { user: {}, goal: '' });
 });
-
-app.get('/instructor-login', (req, res) => {
-    res.render('instructor-login', { message: '' });
-});
-
 
 // GET handler to query classes database
 app.get('/classes', async (req, res) => {
@@ -146,16 +151,31 @@ app.post('/login', async (req, res) => {
                 // pass both user and goalName to the dashboard
                 res.render('dashboard', { user: user, goal: goal_name });
             } else {
-                res.send('Invalid password');
+                res.render('login', { message: 'Invalid password' });
             }
         } else {
-            res.send('User does not exist');
+            res.render('login', { message: 'User does not exist' });
         }
     } catch (error) {
         console.error(error);
         res.send('An error occurred');
     }
 });
+
+// POST route handler for validating admin access key
+app.post('/admin-login', (req, res) => {
+    const { accessKey } = req.body;
+
+    if (accessKey === "111") {
+        res.render('admin', { user: {}, goal: '' });
+    } else if (accessKey === "222"){
+        res.render('instructors', { user: {}, goal: '' });
+    }
+     else {
+        res.render('admin-login', { message: 'Invalid access key.' });
+    }
+});
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
