@@ -42,9 +42,12 @@ app.get('/dashboard', (req, res) => {
     res.render('dashboard', { user: {}, goal: '' });
 });
 
-// GET route handler for dashboard page
 app.get('/instructors', (req, res) => {
     res.render('instructors', { user: {}, goal: '' });
+});
+
+app.get('/instructor-login', (req, res) => {
+    res.render('instructor-login', { message: '' });
 });
 
 
