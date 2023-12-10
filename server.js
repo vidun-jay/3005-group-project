@@ -147,10 +147,10 @@ app.post('/login', async (req, res) => {
                 // pass both user and goalName to the dashboard
                 res.render('dashboard', { user: user, goal: goal_name });
             } else {
-                res.send('Invalid password');
+                res.render('login', { message: 'Invalid password' });
             }
         } else {
-            res.send('User does not exist');
+            res.render('login', { message: 'User does not exist' });
         }
     } catch (error) {
         console.error(error);
