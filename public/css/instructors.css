@@ -70,12 +70,6 @@ body, html {
 
 /* Classes Container Styling */
 .classes-container {
-    /* width: 50%;
-    margin-top: 20px;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); */
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Three columns with equal width */
     gap: 10px; /* Gap between grid items */
