@@ -170,8 +170,7 @@ app.post('/admin-login', (req, res) => {
         res.render('admin', { user: {}, goal: '' });
     } else if (accessKey === "222"){
         res.render('instructors', { user: {}, goal: '' });
-    }
-     else {
+    } else {
         res.render('admin-login', { message: 'Invalid access key.' });
     }
 });
