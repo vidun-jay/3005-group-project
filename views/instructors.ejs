@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Personalized Dashboard - Health and Fitness Club</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <a href="#">Date Selection</a>
+        <a href="#">Future Classes</a>    
+    </div>
+
+    <div class="dashboard-content">
+        <h1>Welcome back, <%= user.first_name %> <%= user.last_name %></h1>
+        
+        <div> 
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Date Selection</title>
+            </head>
+            <body>
+            
+                <label for="selectedDate">Select a Date:</label>
+                <input type="date" id="selectedDate" name="selectedDate">
+
+            </body>
+        </div>
+
+        <p>Classes:</p>
+
+        <div class="content-row">           
+
+
+            <div class="classes-container">
+                <h2>Available Group Fitness Classes</h2>
+                <div class="classes-list">
+                    <!-- added by script below -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div>
+
+        
+    </div>
+
+
+    <!-- Used to load the classes on entry -->
+    <script>
+            // wait for the DOM to be fully loaded before running the script
+            document.addEventListener('DOMContentLoaded', async () => {
+
+                const classesContainer = document.querySelector('.classes-list');
+                try {
+                    const response = await fetch('/classes');
+                    const classes = await response.json();
+
+                    // clear any existing content
+                    classesContainer.innerHTML = '';
+
+                    // add each class to the classes list
+                    classes.forEach(cls => {
+                        
+                        if( (new Date(cls.schedule).toLocaleString())){
+                            const classDiv = document.createElement('div');
+                            classDiv.className = 'class-item';
+                            classDiv.innerHTML = `
+                                <h3>${cls.class_name}</h3>
+                                <p>Instructor: ${cls.instructor_name}</p>
+                                <p>Date: ${new Date(cls.schedule).toLocaleString()}</p>
+                                <button class="register-btn">Register</button>
+                            `;
+                            classesContainer.appendChild(classDiv);
+                        }
+                        
+                    });
+                } catch (error) {
+                    console.error('Could not load classes:', error);
+                }
+            });
+    </script>
+
+
+    <!-- Grabs the classes from the database -->
+    <script>
+
+        async function updateTable(selectedDate){
+            console.log("called");
+
+            // wait for the DOM to be fully loaded before running the script
+            // document.addEventListener('DOMContentLoaded', async () => {
+
+                const classesContainer = document.querySelector('.classes-list');
+                try {
+                    const response = await fetch('/classes');
+                    const classes = await response.json();
+
+                    // clear any existing content
+                    classesContainer.innerHTML = '';
+
+                    // add each class to the classes list
+                    classes.forEach(cls => {
+                        
+                        if( (new Date(cls.schedule).toLocaleString()) == selectedDate || selectedDate == ""){
+                            const classDiv = document.createElement('div');
+                            classDiv.className = 'class-item';
+                            classDiv.innerHTML = `
+                                <h3>${cls.class_name}</h3>
+                                <p>Instructor: ${cls.instructor_name}</p>
+                                <p>Date: ${new Date(cls.schedule).toLocaleString()}</p>
+                                <button class="register-btn">Register</button>
+                            `;
+                            classesContainer.appendChild(classDiv);
+                        }
+                        
+                    });
+                } catch (error) {
+                    console.error('Could not load classes:', error);
+                }
+            // });
+        }
+
+    </script>
+
+
+    <!-- Loads the chart we a new class date is choosen -->
+    <script>
+        // Add an event listener to the date input
+        document.getElementById('selectedDate').addEventListener("change", (date)=> {
+            // Get the selected date value
+            var selectedDate = date.target.value;
+
+            // Reload the page when a date is selected
+            updateTable(selectedDate);
+        });
+    </script>
+
+</body>
+</html>

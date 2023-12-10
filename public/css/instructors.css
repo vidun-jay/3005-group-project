@@ -1,0 +1,54 @@
+body, html {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%;
+    display: flex;
+}
+
+.classes-container {
+    padding: 20px;
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+}
+
+.classes-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.class-item {
+    background: #f4f4f4;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.class-item h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.class-item p {
+    margin: 0 0 10px 0;
+    color: #666;
+}
+
+.notes-section {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Responsive Design for Classes List */
+@media (max-width: 768px) {
+    .class-item {
+        width: calc(50% - 20px);
+    }
+}

@@ -42,6 +42,12 @@ app.get('/dashboard', (req, res) => {
     res.render('dashboard', { user: {}, goal: '' });
 });
 
+// GET route handler for dashboard page
+app.get('/instructors', (req, res) => {
+    res.render('instructors', { user: {}, goal: '' });
+});
+
+
 // GET handler to query classes database
 app.get('/classes', async (req, res) => {
     try {
