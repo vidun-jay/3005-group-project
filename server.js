@@ -52,6 +52,10 @@ app.get('/admin-login', (req, res) => {
     res.render('admin-login', { message: '' });
 });
 
+app.get('/instructors', (req, res) => {
+    res.render('instructors', { user: {}, goal: '' });
+});
+
 // GET handler to query classes database
 app.get('/classes', async (req, res) => {
     try {
@@ -162,8 +166,10 @@ app.post('/login', async (req, res) => {
 app.post('/admin-login', (req, res) => {
     const { accessKey } = req.body;
 
-    if (accessKey === "12345") {
+    if (accessKey === "111") {
         res.render('admin', { user: {}, goal: '' });
+    } else if (accessKey === "222"){
+        res.render('instructors', { user: {}, goal: '' });
     } else {
         res.render('admin-login', { message: 'Invalid access key.' });
     }
