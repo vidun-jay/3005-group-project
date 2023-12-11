@@ -31,3 +31,7 @@ node server.js
 ```
 
 It should then be available on http://localhost:3000/.
+
+## Collaboration Breakdown
+
+All work required for the project were broken down approximately evenly, with each of us having a roughly equal participation in both implementation and database design.
